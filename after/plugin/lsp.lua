@@ -11,8 +11,7 @@ lsp.ensure_installed({
   'cssls',
   'tsserver',
   'rust_analyzer',
-  'eslint',
-  'sumneko_lua'
+  'eslint'
 })
 
 
