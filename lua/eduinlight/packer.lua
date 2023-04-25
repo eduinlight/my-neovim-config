@@ -81,4 +81,7 @@ return require('packer').startup(function(use)
   -- icons
   use { 'kyazdani42/nvim-web-devicons' }
 
+  -- multiple cursors
+  use { 'mg979/vim-visual-multi' }
+
 end)
