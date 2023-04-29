@@ -84,4 +84,6 @@ return require('packer').startup(function(use)
   -- multiple cursors
   use { 'mg979/vim-visual-multi' }
 
+  -- c/c++/bash/llvm debugger
+  use { 'sakhnik/nvim-gdb' }
 end)
