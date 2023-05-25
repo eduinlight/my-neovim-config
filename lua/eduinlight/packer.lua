@@ -4,13 +4,16 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
+  -- neodev for type checking
+  use "folke/neodev.nvim"
+
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     -- or                            , branch = '0.1.x',
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope-dap.nvim' } }
   }
 
   use {
@@ -86,4 +89,7 @@ return require('packer').startup(function(use)
 
   -- c/c++/bash/llvm debugger
   use { 'sakhnik/nvim-gdb' }
+
+  -- debugger
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 end)
