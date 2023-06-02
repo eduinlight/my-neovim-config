@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
   use({ 'rose-pine/neovim', as = 'rose-pine' })
 
   use { 'nvim-treesitter/playground' }
+  use { 'nvim-treesitter/nvim-treesitter-context' }
 
   use { "xiyaowong/nvim-transparent" }
 
