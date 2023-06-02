@@ -16,3 +16,8 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- jump to context
+vim.keymap.set("n", "<leader>jc", function()
+  require("treesitter-context").go_to_context()
+end, { silent = true })
