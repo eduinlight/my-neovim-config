@@ -92,5 +92,8 @@ return require('packer').startup(function(use)
   use { 'sakhnik/nvim-gdb' }
 
   -- debugger
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+
+  -- surround ys cs ds
+  use { "kylechui/nvim-surround", tag = "*" }
 end)
