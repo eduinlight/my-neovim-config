@@ -21,3 +21,6 @@ require'nvim-treesitter.configs'.setup {
 vim.keymap.set("n", "<leader>jc", function()
   require("treesitter-context").go_to_context()
 end, { silent = true })
+
+local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
+ft_to_parser.ejs = "html"
