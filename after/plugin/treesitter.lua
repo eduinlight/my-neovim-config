@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = {"c", "lua", "rust", "javascript", "typescript", "help", "clojure" , "cmake", "css", "html", "graphql", "java", "json", "latex", "kotlin", "make", "elixir", "python", "regex", "scss", "sql", "yaml", "toml", "vim", "vue", "dart", "dockerfile", "cpp", "c_sharp", "bash"},
+  ensure_installed = {"c", "lua", "rust", "javascript", "typescript", "clojure" , "cmake", "css", "html", "graphql", "java", "json", "latex", "kotlin", "make", "elixir", "python", "regex", "scss", "sql", "yaml", "toml", "vim", "vue", "dart", "dockerfile", "cpp", "c_sharp", "bash"},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -22,5 +22,4 @@ vim.keymap.set("n", "<leader>jc", function()
   require("treesitter-context").go_to_context()
 end, { silent = true })
 
-local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
-ft_to_parser.ejs = "html"
+vim.treesitter.language.register('html', 'xml')
