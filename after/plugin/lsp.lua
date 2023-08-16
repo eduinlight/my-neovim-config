@@ -76,3 +76,12 @@ K('n', '<leader>f', function() vim.lsp.buf.format { async = true } end)
 K('n', '<leader>dv', ":vsplit<CR><C-w>lgD", { silent = true })
 K('n', '<leader>ds', ":split<CR><C-w>jgD", { silent = true })
 K('n', '<leader>js', ":ClangdSwitchSourceHeader<CR>", { silent = true })
+
+-- SELECT COMPLETION
+local cmp = require('cmp')
+
+cmp.setup({
+  mapping = {
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+  }
+})
