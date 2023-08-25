@@ -35,10 +35,11 @@ return require('packer').startup(function(use)
 
   use { "mbbill/undotree" }
 
-  use {
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  }
+  -- use {
+  --   "iamcco/markdown-preview.nvim",
+  --   run = function() vim.fn["mkdp#util#install"]() end,
+  -- }
+  use({ 'toppair/peek.nvim', run = 'deno task --quiet build:fast' })
 
   use { "tpope/vim-fugitive" }
 
