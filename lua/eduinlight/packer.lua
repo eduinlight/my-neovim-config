@@ -100,4 +100,7 @@ return require('packer').startup(function(use)
 
   -- surround ys cs ds
   use { "kylechui/nvim-surround", tag = "*" }
+
+  -- format on save
+  use { "elentok/format-on-save.nvim" }
 end)
