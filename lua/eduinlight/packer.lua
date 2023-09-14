@@ -90,7 +90,7 @@ return require('packer').startup(function(use)
   use { 'kyazdani42/nvim-web-devicons' }
 
   -- multiple cursors
-  use { 'mg979/vim-visual-multi' }
+  use { 'mg979/vim-visual-multi', branch = 'master' }
 
   -- c/c++/bash/llvm debugger
   use { 'sakhnik/nvim-gdb' }

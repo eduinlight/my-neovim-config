@@ -41,11 +41,11 @@ format_on_save.setup({
     go = formatters.lsp,
   },
   -- Optional: fallback formatter to use when no formatters match the current filetype
-  fallback_formatter = {
-    formatters.remove_trailing_whitespace,
-    formatters.remove_trailing_newlines,
-    formatters.prettierd,
-  },
+  -- fallback_formatter = {
+  --   formatters.remove_trailing_whitespace,
+  --   formatters.remove_trailing_newlines,
+  --   formatters.prettierd,
+  -- },
   -- By default, all shell commands are prefixed with "sh -c" (see PR #3)
   -- To prevent that set `run_with_sh` to `false`.
   -- run_with_sh = false,

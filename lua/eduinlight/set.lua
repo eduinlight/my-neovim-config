@@ -21,7 +21,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.directory = os.getenv("HOME") .. "/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp"
-vim.opt.colorcolumn = { ctermbg=0, guibg="lightgrey" }
+vim.opt.colorcolumn = { ctermbg = 0, guibg = "lightgrey" }
 
 vim.opt.cursorline = true
 vim.opt.wildmenu = true
@@ -36,3 +36,5 @@ vim.opt.hlsearch = true
 vim.opt.autoread = true
 
 vim.g.sessions_dir = os.getenv("HOME") .. "/.vim-sessions"
+
+vim.g.rust_recommended_style = 0
