@@ -85,6 +85,14 @@ return require('packer').startup(function(use)
 
   -- files explorer
   use { 'kyazdani42/nvim-tree.lua' }
+  -- lsp support for nvim-tree
+  use {
+    'antosha417/nvim-lsp-file-operations',
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-tree.lua",
+    }
+  }
 
   -- icons
   use { 'kyazdani42/nvim-web-devicons' }
