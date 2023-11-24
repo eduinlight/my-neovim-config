@@ -31,7 +31,7 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/playground' }
   use { 'nvim-treesitter/nvim-treesitter-context' }
 
-  use { "xiyaowong/nvim-transparent" }
+  -- use { "xiyaowong/nvim-transparent" }
 
   use { "mbbill/undotree" }
 
