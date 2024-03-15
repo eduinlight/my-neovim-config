@@ -1,4 +1,6 @@
 local lsp = require('lsp-zero')
+local lspconfig = require('lspconfig')
+local util = require('lspconfig/util')
 
 lsp.preset('recommended')
 
@@ -13,7 +15,6 @@ lsp.ensure_installed({
   'rust_analyzer',
   'eslint'
 })
-
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -47,7 +48,7 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-require 'lspconfig'.eslint.setup {
+lspconfig.eslint.setup {
   capabilities = capabilities,
   settings = {
     codeActionOnSave = {
@@ -58,7 +59,7 @@ require 'lspconfig'.eslint.setup {
 }
 
 -- DART
-require('lspconfig')['dartls'].setup({
+lspconfig.dartls.setup({
   on_attach = on_attach,
   flags = lsp_flags
 })
