@@ -1,8 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(function(use)
   -- neodev for type checking
   use "folke/neodev.nvim"
@@ -109,11 +104,18 @@ return require('packer').startup(function(use)
   use { 'sakhnik/nvim-gdb' }
 
   -- debugger
-  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
 
   -- surround ys cs ds
   use { "kylechui/nvim-surround", tag = "*" }
 
   -- format on save
   use { "elentok/format-on-save.nvim" }
+
+  -- Norg
+  use {
+    "nvim-neorg/neorg",
+    rocks = { "lua-utils.nvim", "nvim-nio", "nui.nvim", "plenary.nvim" },
+    tag = "*", -- Pin Neorg to the latest stable release
+  }
 end)

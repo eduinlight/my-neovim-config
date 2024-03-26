@@ -164,6 +164,11 @@ _G.packer_plugins = {
     path = "/home/light/.local/share/nvim/site/pack/packer/start/neodev.nvim",
     url = "https://github.com/folke/neodev.nvim"
   },
+  neorg = {
+    loaded = true,
+    path = "/home/light/.local/share/nvim/site/pack/packer/start/neorg",
+    url = "https://github.com/nvim-neorg/neorg"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/light/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -198,6 +203,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/light/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-nio"] = {
+    loaded = true,
+    path = "/home/light/.local/share/nvim/site/pack/packer/start/nvim-nio",
+    url = "https://github.com/nvim-neotest/nvim-nio"
   },
   ["nvim-surround"] = {
     loaded = true,

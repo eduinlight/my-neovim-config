@@ -12,7 +12,9 @@ K('n', '<C-X>', function()
 end)
 K("n", "<F12>", ":TodoTelescope keywords=TODO,FIX<CR>")
 
-require('telescope').setup {
+local telescope = require('telescope')
+
+telescope.setup {
   defaults = {
     file_ignore_patterns = { "node_modules", "./node_modules", "./build", "./dist", "./.git", "./extern",
       "./vcpkg_installed", ".git", "dist" },
@@ -29,3 +31,5 @@ require('telescope').setup {
     }
   }
 }
+
+telescope.extensions.dap.configurations()
