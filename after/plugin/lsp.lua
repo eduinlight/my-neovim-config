@@ -2,18 +2,28 @@ local lsp = require('lsp-zero')
 local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
 
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({ buffer = bufnr })
+end)
+
 lsp.preset('recommended')
 
 lsp.set_preferences({
   sign_icons = {}
 })
 
-lsp.ensure_installed({
-  'html',
-  'cssls',
-  'tsserver',
-  'rust_analyzer',
-  'eslint'
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'html',
+    'cssls',
+    'tsserver',
+    'rust_analyzer',
+    'eslint'
+  },
+  handlers = {
+    lsp.default_setup,
+  },
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -64,7 +74,6 @@ lspconfig.dartls.setup({
   flags = lsp_flags
 })
 
-lsp.setup()
 
 -- USE telescome to listing references
 local builtin = require("telescope.builtin")

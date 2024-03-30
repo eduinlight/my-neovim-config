@@ -1,6 +1,3 @@
--- debug using telescope
-require('telescope').load_extension('dap')
-
 local dap = require("dap")
 
 -- better icons

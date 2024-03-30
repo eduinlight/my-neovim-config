@@ -1,4 +1,4 @@
 K = vim.keymap.set
 
-require("packer-plugin-manager")
+require("lazy-plugin-manager")
 require("eduinlight")
