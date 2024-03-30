@@ -2,6 +2,11 @@ local lazy = require("lazy")
 
 lazy.setup(
   {
+    {
+      "vhyrro/luarocks.nvim",
+      priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+      config = true,
+    },
     -- neodev for type checking
     "folke/neodev.nvim",
     -- telescope
@@ -46,8 +51,8 @@ lazy.setup(
     -- Snippets
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },
-    -- gitlens like
     'APZelos/blamer.nvim',
+    -- gitlens like
     'rhysd/git-messenger.vim',
     -- dashboard
     {
@@ -81,9 +86,11 @@ lazy.setup(
     -- format on save
     "elentok/format-on-save.nvim",
     -- Norg
-    -- {
-    --   "nvim-neorg/neorg",
-    --   rocks = { "lua-utils.nvim", "nvim-nio", "nui.nvim", "plenary.nvim" },
-    --   tag = "*", -- Pin Neorg to the latest stable release
-    -- },
+    {
+      "nvim-neorg/neorg",
+      dependencies = { "luarocks.nvim" },
+      lazy = false,
+      version = "*",
+      -- config = true
+    }
   })

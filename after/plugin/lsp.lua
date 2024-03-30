@@ -74,7 +74,6 @@ lspconfig.dartls.setup({
   flags = lsp_flags
 })
 
-
 -- USE telescome to listing references
 local builtin = require("telescope.builtin")
 vim.lsp.handlers["textDocument/references"] = builtin.lsp_references

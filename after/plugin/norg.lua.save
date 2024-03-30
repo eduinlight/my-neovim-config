@@ -1,3 +1,0 @@
-local norg = require("neorg")
-
-norg.setup()
