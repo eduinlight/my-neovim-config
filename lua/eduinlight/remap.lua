@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 K("n", "<leader>w", ":w<CR>")
 K("n", "<leader>q", ":q<CR>")
 
