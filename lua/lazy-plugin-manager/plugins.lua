@@ -25,11 +25,11 @@ lazy.setup(
     },
     --themes
     "ellisonleao/gruvbox.nvim",
-    { 'rose-pine/neovim',  as = 'rose-pine' },
+    { 'rose-pine/neovim', as = 'rose-pine' },
+    -- uitils
     'nvim-treesitter/playground',
     'nvim-treesitter/nvim-treesitter-context',
     { "mbbill/undotree" },
-    { 'toppair/peek.nvim', run = 'deno task --quiet build:fast' },
     "tpope/vim-fugitive",
     { "folke/todo-comments.nvim",         dependencies = "nvim-lua/plenary.nvim" },
     { 'williamboman/mason.nvim' },
@@ -92,5 +92,13 @@ lazy.setup(
       lazy = false,
       version = "*",
       -- config = true
+    },
+    -- markdown-preview
+    {
+      "iamcco/markdown-preview.nvim",
+      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+      ft = { "markdown" },
+      build = function() vim.fn["mkdp#util#install"]() end,
     }
+
   })
