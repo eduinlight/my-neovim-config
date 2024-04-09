@@ -64,17 +64,14 @@ lazy.setup(
     -- status bar
     'itchyny/lightline.vim',
     -- files explorer
-    'kyazdani42/nvim-tree.lua',
+    "nvim-tree/nvim-tree.lua",
     -- lsp support for nvim-tree
     {
       'antosha417/nvim-lsp-file-operations',
       dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-tree.lua",
+        "nvim-tree/nvim-web-devicons",
       }
     },
-    -- icons
-    'kyazdani42/nvim-web-devicons',
     -- multiple cursors
     { 'mg979/vim-visual-multi', branch = 'master' },
     -- c/c++/bash/llvm debugger
