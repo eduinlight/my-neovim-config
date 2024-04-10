@@ -10,7 +10,7 @@ K('n', '<leader>gc', builtin.git_commits, {})
 K('n', '<C-X>', function()
   builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
-K("n", "<F12>", ":TodoTelescope keywords=TODO,FIX<CR>")
+K("n", "<F12>", ":TodoTelescope keywords=TODO,FIX,HACK,WARN,PERG,NOTE,TEST<CR>")
 
 local telescope = require('telescope')
 
