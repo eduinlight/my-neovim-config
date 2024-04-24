@@ -28,7 +28,12 @@ lazy.setup(
     { 'rose-pine/neovim', as = 'rose-pine' },
     -- uitils
     'nvim-treesitter/playground',
-    'nvim-treesitter/nvim-treesitter-context',
+    {
+      "LunarVim/breadcrumbs.nvim",
+      dependencies = {
+        { "SmiteshP/nvim-navic" },
+      },
+    },
     { "mbbill/undotree" },
     "tpope/vim-fugitive",
     { "folke/todo-comments.nvim",         dependencies = "nvim-lua/plenary.nvim" },
@@ -62,7 +67,7 @@ lazy.setup(
     -- comments
     'numToStr/Comment.nvim',
     -- status bar
-    'itchyny/lightline.vim',
+    'nvim-lualine/lualine.nvim',
     -- files explorer
     "nvim-tree/nvim-tree.lua",
     -- lsp support for nvim-tree
