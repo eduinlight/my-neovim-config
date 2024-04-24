@@ -11,6 +11,8 @@ K('n', '<C-X>', function()
   builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
 K("n", "<F12>", ":TodoTelescope keywords=TODO,FIX,HACK,WARN,PERG,NOTE,TEST<CR>")
+K("n", "<leader>lds", ":Telescope lsp_document_symbols<CR>")
+K("n", "<leader>lws", ":Telescope lsp_workspace_symbols<CR>")
 
 local telescope = require('telescope')
 
