@@ -19,7 +19,7 @@ local telescope = require('telescope')
 telescope.setup {
   defaults = {
     file_ignore_patterns = { "node_modules", "./node_modules", "./build", "./dist", "./.git", "./extern",
-      "./vcpkg_installed", ".git", "dist" },
+      "./vcpkg_installed", ".git", "dist", "target" },
   },
   pickers = {
     buffers = {
