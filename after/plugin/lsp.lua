@@ -74,6 +74,19 @@ lspconfig.dartls.setup({
   flags = lsp_flags
 })
 
+lspconfig.tailwindCSS.setup({
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" }
+        },
+      },
+    },
+  },
+})
+
 -- USE telescope to listing references
 local builtin = require("telescope.builtin")
 vim.lsp.handlers["textDocument/references"] = builtin.lsp_references
