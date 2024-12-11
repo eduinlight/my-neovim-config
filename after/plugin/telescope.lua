@@ -1,5 +1,5 @@
 local builtin = require('telescope.builtin')
-K("n", "<C-p>", ":Telescope find_files prompt_prefix=🔍: sort_lastused=true<CR>")
+K("n", "<C-p>", builtin.git_files, {})
 K('n', '<leader>ff', builtin.git_files, {})
 K('n', '<leader>fg', builtin.live_grep, {})
 K('n', '<leader>fb', builtin.buffers, {})
