@@ -70,6 +70,19 @@ lazy.setup(
     'nvim-lualine/lualine.nvim',
     -- files explorer
     "nvim-tree/nvim-tree.lua",
+    {
+      'stevearc/oil.nvim',
+      opts = {},
+      dependencies = { { "echasnovski/mini.icons", opts = {} } },
+      lazy = false,
+    },
+    {
+      "refractalize/oil-git-status.nvim",
+      dependencies = {
+        "stevearc/oil.nvim",
+      },
+      config = true,
+    },
     -- lsp support for nvim-tree
     {
       'antosha417/nvim-lsp-file-operations',

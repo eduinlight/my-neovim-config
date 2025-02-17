@@ -113,7 +113,7 @@ require("nvim-tree").setup({
   },
 })
 
-K("n", "<A-b>", ":NvimTreeFindFile<CR>")
+-- K("n", "<A-b>", ":NvimTreeFindFile<CR>")
 
 -- LSP SUPPORT
 require("lsp-file-operations").setup()
