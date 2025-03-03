@@ -67,6 +67,10 @@ lspconfig.eslint.setup {
   }
 }
 
+lspconfig.html.setup {
+  filetypes = { "html", "templ" }
+}
+
 -- DART
 lspconfig.dartls.setup({
   on_attach = on_attach,

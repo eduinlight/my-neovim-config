@@ -77,8 +77,8 @@ require("oil").setup({
   },
   -- Set to false to disable all of the above keymaps
   use_default_keymaps = true,
+  -- Show files and directories that start with "."
   view_options = {
-    -- Show files and directories that start with "."
     show_hidden = true,
     -- This function defines what is considered a "hidden" file
     is_hidden_file = function(name, bufnr)
