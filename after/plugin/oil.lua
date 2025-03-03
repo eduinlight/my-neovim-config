@@ -202,7 +202,13 @@ require("oil").setup({
   },
 })
 
-K("n", "<A-b>", ":Oil<CR>")
+K("n", "<A-b>", function()
+  if vim.bo.filetype == 'oil' then
+    require("oil.actions").close.callback()
+  else
+    vim.cmd('Oil')
+  end
+end)
 
 require('oil-git-status').setup({
   show_ignored = true,

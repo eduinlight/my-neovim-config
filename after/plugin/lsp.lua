@@ -68,7 +68,7 @@ lspconfig.eslint.setup {
 }
 
 lspconfig.html.setup {
-  filetypes = { "html", "templ" }
+  filetypes = { "html", "templ", "htmldjango", "twig" }
 }
 
 -- DART
