@@ -120,22 +120,30 @@ lazy.setup(
         -- for example
         provider = "claude",
         auto_suggestions_provider = "claude",
-        claude = {
-          endpoint = "https://api.anthropic.com",
-          model = "claude-3-7-sonnet-20250219",
-          temperature = 0,
-          max_tokens = 40000,
-        },
-        ollama_qwen = {
-          model = "qwen2.5-coder:latest",
-          temperature = 0,
-          max_tokens = 40000,
-        },
-        ollama_deepseek = {
-          model = "deepseek-r1:latest",
-          temperature = 0,
-          max_tokens = 40000,
-        },
+        providers = {
+          claude = {
+            endpoint = "https://api.anthropic.com",
+            model = "claude-3-7-sonnet-20250219",
+            extra_request_body = {
+              max_tokens = 40000,
+              temperature = 0,
+            }
+          },
+          ollama_qwen = {
+            model = "qwen2.5-coder:latest",
+            extra_request_body = {
+              max_tokens = 40000,
+              temperature = 0,
+            }
+          },
+          ollama_deepseek = {
+            model = "deepseek-r1:latest",
+            extra_request_body = {
+              max_tokens = 40000,
+              temperature = 0,
+            }
+          },
+        }
       },
       -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
       build = "make",
