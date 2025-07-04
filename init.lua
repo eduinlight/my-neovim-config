@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 K = vim.keymap.set
 
-require("lazy-plugin-manager")
-require("eduinlight")
+require("config")
