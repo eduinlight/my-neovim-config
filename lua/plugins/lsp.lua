@@ -22,7 +22,6 @@ return {
           'eslint',
           'html',
           'tailwindcss',
-          'dartls',
         },
       })
 
@@ -194,4 +193,3 @@ return {
   },
   { 'rafamadriz/friendly-snippets' },
 }
-
