@@ -42,9 +42,6 @@ return {
 
       K('n', '<C-p>', builtin.git_files, {})
       K('n', '<leader>pf', builtin.find_files, {})
-      K('n', '<leader>ps', function()
-        builtin.grep_string({ search = vim.fn.input("Grep > ") })
-      end)
       K('n', '<leader>vh', builtin.help_tags, {})
       K('n', '<leader>pb', builtin.buffers, {})
       K('n', '<leader>lg', builtin.live_grep, {})

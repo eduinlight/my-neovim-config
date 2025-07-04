@@ -1,5 +1,5 @@
 return {
-  { "mason-org/mason.nvim", opts = {} },
+  { "mason-org/mason.nvim",             opts = {} },
   { 'williamboman/mason-lspconfig.nvim' },
   { 'neovim/nvim-lspconfig' },
   { 'hrsh7th/nvim-cmp' },
@@ -9,12 +9,12 @@ return {
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'hrsh7th/cmp-nvim-lua' },
   { 'mfussenegger/nvim-lint' },
-  { 
+  {
     'L3MON4D3/LuaSnip',
     dependencies = { 'rafamadriz/friendly-snippets' },
     config = function()
       local lspconfig = require('lspconfig')
-      
+
       require('mason').setup({})
       require('mason-lspconfig').setup({
         ensure_installed = {
@@ -25,13 +25,13 @@ return {
           'dartls',
         },
       })
-      
+
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-      
+
       local on_attach = function(client, bufnr)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-        
+
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
         K('n', '[d', vim.diagnostic.goto_prev, bufopts)
         K('n', ']d', vim.diagnostic.goto_next, bufopts)
@@ -50,11 +50,11 @@ return {
         K('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
         K('n', 'gr', vim.lsp.buf.references, bufopts)
       end
-      
+
       local lsp_flags = {
         debounce_text_changes = 150,
       }
-      
+
       lspconfig.eslint.setup {
         capabilities = capabilities,
         on_attach = on_attach,
@@ -65,20 +65,20 @@ return {
           },
         }
       }
-      
+
       lspconfig.html.setup {
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
         filetypes = { "html", "templ", "htmldjango", "twig" }
       }
-      
+
       lspconfig.dartls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags
       })
-      
+
       lspconfig.tailwindcss.setup({
         capabilities = capabilities,
         on_attach = on_attach,
@@ -94,7 +94,7 @@ return {
           },
         },
       })
-      
+
       lspconfig.lua_ls.setup {
         capabilities = capabilities,
         on_attach = on_attach,
@@ -105,7 +105,7 @@ return {
               version = 'LuaJIT',
             },
             diagnostics = {
-              globals = {'vim'},
+              globals = { 'vim' },
             },
             workspace = {
               library = vim.api.nvim_get_runtime_file("", true),
@@ -116,11 +116,11 @@ return {
           },
         },
       }
-      
+
       local builtin = require("telescope.builtin")
       vim.lsp.handlers["textDocument/references"] = builtin.lsp_references
       vim.lsp.handlers["textDocument/definition"] = builtin.lsp_definitions
-      
+
       K('n', '<A-f>', vim.cmd.EslintFixAll)
       K('n', '<leader>f', function()
         local ft = vim.bo.filetype
@@ -135,12 +135,12 @@ return {
       K('n', '<leader>ds', ":split<CR><C-w>jgD", { silent = true })
       K('n', '<leader>js', ":ClangdSwitchSourceHeader<CR>", { silent = true })
       K('n', '<leader>ct', function() vim.diagnostic.open_float({ "line" }) end, { silent = true })
-      
+
       local cmp = require('cmp')
       local luasnip = require('luasnip')
-      
+
       require('luasnip.loaders.from_vscode').lazy_load()
-      
+
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -194,3 +194,4 @@ return {
   },
   { 'rafamadriz/friendly-snippets' },
 }
+
