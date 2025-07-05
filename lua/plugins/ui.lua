@@ -1,4 +1,4 @@
-return {
+local M = {
   {
     "LunarVim/breadcrumbs.nvim",
     dependencies = {
@@ -143,4 +143,6 @@ return {
     end
   },
 }
+
+return M
 

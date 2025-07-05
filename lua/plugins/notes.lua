@@ -1,4 +1,4 @@
-return {
+local M = {
   {
     "nvim-neorg/neorg",
     dependencies = { "luarocks.nvim" },
@@ -28,4 +28,6 @@ return {
     end
   },
 }
+
+return M
 

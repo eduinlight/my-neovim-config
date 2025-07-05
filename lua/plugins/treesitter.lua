@@ -1,4 +1,4 @@
-return {
+local M = {
   {
     'nvim-treesitter/nvim-treesitter',
     build = function()
@@ -45,4 +45,6 @@ return {
   },
   { 'nvim-treesitter/playground' },
 }
+
+return M
 

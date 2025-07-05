@@ -1,4 +1,4 @@
-return {
+local M = {
   {
     'stevearc/oil.nvim',
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
@@ -44,7 +44,7 @@ return {
         },
         use_default_keymaps = true,
       })
-      
+
       K("n", "<A-b>", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
     end
   },
@@ -57,3 +57,4 @@ return {
   },
 }
 
+return M

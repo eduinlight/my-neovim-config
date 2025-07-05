@@ -1,4 +1,4 @@
-return {
+local M = {
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.6',
@@ -59,3 +59,5 @@ return {
     end
   },
 }
+
+return M

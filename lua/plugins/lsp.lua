@@ -1,4 +1,4 @@
-return {
+local M = {
   { "mason-org/mason.nvim",             opts = {} },
   { 'williamboman/mason-lspconfig.nvim' },
   { 'neovim/nvim-lspconfig' },
@@ -193,3 +193,5 @@ return {
   },
   { 'rafamadriz/friendly-snippets' },
 }
+
+return M
