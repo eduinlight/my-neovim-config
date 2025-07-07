@@ -20,8 +20,8 @@ local M = {
       end)
     end
   },
-  { 
-    "Imamiland/neovim-vivify-markdown.nvim", 
+  {
+    "Imamiland/neovim-vivify-markdown.nvim",
     version = "stable",
     config = function()
       require("neovim-vivify-markdown").setup({})
@@ -30,4 +30,3 @@ local M = {
 }
 
 return M
-
