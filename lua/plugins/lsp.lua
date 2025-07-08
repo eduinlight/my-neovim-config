@@ -32,8 +32,8 @@ return {
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        K('n', '[d', vim.diagnostic.goto_prev, bufopts)
-        K('n', ']d', vim.diagnostic.goto_next, bufopts)
+        K('n', '[d', function() vim.diagnostic.goto_prev() end, bufopts)
+        K('n', ']d', function() vim.diagnostic.goto_next() end, bufopts)
         K('n', 'gD', vim.lsp.buf.declaration, bufopts)
         K('n', 'gd', vim.lsp.buf.definition, bufopts)
         K('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -46,7 +46,6 @@ return {
         end, bufopts)
         K('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
         K('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-        K('n', '<F2>', vim.lsp.buf.rename, bufopts)
         K('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
         K('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
       end
