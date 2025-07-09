@@ -47,7 +47,7 @@ return {
         K('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
         K('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
         K('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-        K('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
+        K('n', '<leader>gr', require('telescope.builtin').lsp_references, bufopts)
       end
 
       local lsp_flags = {
