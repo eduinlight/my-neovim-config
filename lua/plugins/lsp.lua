@@ -32,12 +32,13 @@ return {
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        K('n', '[d', function() vim.diagnostic.goto_prev() end, bufopts)
-        K('n', ']d', function() vim.diagnostic.goto_next() end, bufopts)
-        K('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        K('n', 'gd', vim.lsp.buf.definition, bufopts)
+        K('n', '<leader>[d', function() vim.diagnostic.goto_prev() end, bufopts)
+        K('n', '<leader>]d', function() vim.diagnostic.goto_next() end, bufopts)
+        K('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
+        K('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
         K('n', 'K', vim.lsp.buf.hover, bufopts)
-        K('n', 'gi', vim.lsp.buf.implementation, bufopts)
+        K('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
+        K('n', '<leader>gd', builtin.lsp_definitions, {})
         K('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
         K('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
         K('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
