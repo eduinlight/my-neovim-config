@@ -49,6 +49,8 @@ return {
       K('n', '<leader>gb', builtin.git_branches, {})
       K('n', '<leader>gc', builtin.git_commits, {})
       K('n', '<leader>gbc', builtin.git_bcommits, {})
+      K('n', '<leader>gd', builtin.lsp_definitions, {})
+      K('n', '<leader>gr', builtin.lsp_references, {})
 
       require('telescope').load_extension('dap')
       K('n', '<leader>dc', '<cmd>Telescope dap commands<cr>')

@@ -35,7 +35,6 @@ return {
         K('n', '<leader>[d', function() vim.diagnostic.goto_prev() end, bufopts)
         K('n', '<leader>]d', function() vim.diagnostic.goto_next() end, bufopts)
         K('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
-        K('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
         K('n', 'K', vim.lsp.buf.hover, bufopts)
         K('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
         K('n', '<leader>gd', builtin.lsp_definitions, {})
@@ -48,7 +47,6 @@ return {
         K('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
         K('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
         K('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-        K('n', '<leader>gr', require('telescope.builtin').lsp_references, bufopts)
       end
 
       local lsp_flags = {
