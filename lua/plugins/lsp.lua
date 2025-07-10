@@ -119,16 +119,6 @@ return {
       vim.lsp.handlers["textDocument/references"] = builtin.lsp_references
       vim.lsp.handlers["textDocument/definition"] = builtin.lsp_definitions
 
-      K('n', '<A-f>', vim.cmd.EslintFixAll)
-      K('n', '<leader>f', function()
-        local ft = vim.bo.filetype
-        if ft == 'typescript' or ft == 'typescriptreact' or ft == 'javascript' or ft == 'javascriptreact' then
-          vim.cmd('!biome format --write ' .. vim.fn.expand('%'))
-          vim.cmd('edit!')
-        else
-          vim.lsp.buf.format { async = true }
-        end
-      end)
       K('n', '<leader>dv', ":vsplit<CR><C-w>lgD", { silent = true })
       K('n', '<leader>ds', ":split<CR><C-w>jgD", { silent = true })
       K('n', '<leader>js', ":ClangdSwitchSourceHeader<CR>", { silent = true })
