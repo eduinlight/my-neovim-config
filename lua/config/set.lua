@@ -37,7 +37,6 @@ vim.opt.hlsearch = true
 
 -- vim.opt.bs = 2
 vim.opt.autoread = true
-vim.opt.autowrite = true
 
 vim.g.sessions_dir = os.getenv("HOME") .. "/.vim-sessions"
 
