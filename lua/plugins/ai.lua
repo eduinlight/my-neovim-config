@@ -4,31 +4,13 @@ return {
     event = "VeryLazy",
     version = false,
     opts = {
-      provider = "claude",
-      auto_suggestions_provider = "claude",
+      provider = "ollama",
+      auto_suggestions_provider = "ollama",
       providers = {
-        claude = {
-          endpoint = "https://api.anthropic.com",
-          model = "claude-3-7-sonnet-20250219",
-          extra_request_body = {
-            max_tokens = 40000,
-            temperature = 0,
-          }
-        },
-        ollama_qwen = {
+        ollama = {
+          endpoint = "http://localhost:11434",
           model = "qwen2.5-coder:latest",
-          extra_request_body = {
-            max_tokens = 40000,
-            temperature = 0,
-          }
-        },
-        ollama_deepseek = {
-          model = "deepseek-r1:latest",
-          extra_request_body = {
-            max_tokens = 40000,
-            temperature = 0,
-          }
-        },
+        }
       }
     },
     build = "make",
