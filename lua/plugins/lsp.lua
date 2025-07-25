@@ -44,7 +44,7 @@ return {
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, bufopts)
         K('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-        K('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+        K('n', '<F2>', vim.lsp.buf.rename, bufopts)
         K('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
       end
 
