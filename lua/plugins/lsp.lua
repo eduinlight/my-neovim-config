@@ -13,8 +13,6 @@ return {
     'L3MON4D3/LuaSnip',
     dependencies = { 'rafamadriz/friendly-snippets' },
     config = function()
-      local lspconfig = require('lspconfig')
-
       require('mason').setup({})
       require('mason-lspconfig').setup({
         ensure_installed = {
@@ -28,34 +26,15 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-      local on_attach = function(client, bufnr)
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-        local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        K('n', '<leader>[d', function() vim.diagnostic.goto_prev() end, bufopts)
-        K('n', '<leader>]d', function() vim.diagnostic.goto_next() end, bufopts)
-        K('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
-        K('n', 'K', vim.lsp.buf.hover, bufopts)
-        K('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
-        K('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-        K('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-        K('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        K('n', '<leader>wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, bufopts)
-        K('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-        K('n', '<F2>', vim.lsp.buf.rename, bufopts)
-        K('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-      end
-
-      local lsp_flags = {
-        debounce_text_changes = 150,
-      }
-
-      lspconfig.eslint.setup {
+      vim.lsp.config('*', {
         capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
+        flags = {
+          debounce_text_changes = 150,
+        },
+      })
+
+      vim.lsp.config.eslint = {
+        cmd = { 'vscode-eslint-language-server', '--stdio' },
         settings = {
           codeActionOnSave = {
             mode = "all"
@@ -63,23 +42,17 @@ return {
         }
       }
 
-      lspconfig.html.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
+      vim.lsp.config.html = {
+        cmd = { 'vscode-html-language-server', '--stdio' },
         filetypes = { "html", "templ", "htmldjango", "twig" }
       }
 
-      lspconfig.dartls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags
-      })
+      vim.lsp.config.dartls = {
+        cmd = { 'dart', 'language-server', '--protocol=lsp' },
+      }
 
-      lspconfig.tailwindcss.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
+      vim.lsp.config.tailwindcss = {
+        cmd = { 'tailwindcss-language-server', '--stdio' },
         settings = {
           tailwindCSS = {
             experimental = {
@@ -90,12 +63,10 @@ return {
             },
           },
         },
-      })
+      }
 
-      lspconfig.lua_ls.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
+      vim.lsp.config.lua_ls = {
+        cmd = { 'lua-language-server' },
         settings = {
           Lua = {
             runtime = {
@@ -114,10 +85,15 @@ return {
         },
       }
 
+      vim.lsp.enable({ 'eslint', 'html', 'dartls', 'tailwindcss', 'lua_ls' })
+
       local builtin = require("telescope.builtin")
       vim.lsp.handlers["textDocument/references"] = builtin.lsp_references
       vim.lsp.handlers["textDocument/definition"] = builtin.lsp_definitions
 
+      K('n', '<leader>ca', vim.lsp.buf.code_action, { silent = true })
+      K('n', '<leader>rn', vim.lsp.buf.rename, { silent = true })
+      K('n', '<leader>sy', builtin.lsp_document_symbols, { silent = true })
       K('n', '<leader>dv', ":vsplit<CR><C-w>lgD", { silent = true })
       K('n', '<leader>ds', ":split<CR><C-w>jgD", { silent = true })
       K('n', '<leader>js', ":ClangdSwitchSourceHeader<CR>", { silent = true })
