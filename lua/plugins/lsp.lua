@@ -1,7 +1,6 @@
 local M = {
   { "mason-org/mason.nvim",             opts = {} },
   { 'williamboman/mason-lspconfig.nvim' },
-  { 'neovim/nvim-lspconfig' },
   { 'hrsh7th/nvim-cmp' },
   { 'hrsh7th/cmp-buffer' },
   { 'hrsh7th/cmp-path' },
@@ -13,8 +12,6 @@ local M = {
     'L3MON4D3/LuaSnip',
     dependencies = { 'rafamadriz/friendly-snippets' },
     config = function()
-      local lspconfig = require('lspconfig')
-
       require('mason').setup({})
       require('mason-lspconfig').setup({
         ensure_installed = {
@@ -25,63 +22,45 @@ local M = {
         },
       })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      local on_attach = function(client, bufnr)
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+      vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(ev)
+          local bufopts = { noremap = true, silent = true, buffer = ev.buf }
+          K('n', '<leader>[d', function() vim.diagnostic.goto_prev() end, bufopts)
+          K('n', '<leader>]d', function() vim.diagnostic.goto_next() end, bufopts)
+          K('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
+          K('n', 'K', vim.lsp.buf.hover, bufopts)
+          K('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
+          K('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+          K('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+          K('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+          K('n', '<leader>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          end, bufopts)
+          K('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+          K('n', '<F2>', vim.lsp.buf.rename, bufopts)
+          K('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+        end,
+      })
 
-        local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        K('n', '[d', function() vim.diagnostic.goto_prev() end, bufopts)
-        K('n', ']d', function() vim.diagnostic.goto_next() end, bufopts)
-        K('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        K('n', 'gd', vim.lsp.buf.definition, bufopts)
-        K('n', 'K', vim.lsp.buf.hover, bufopts)
-        K('n', 'gi', vim.lsp.buf.implementation, bufopts)
-        K('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-        K('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-        K('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        K('n', '<leader>wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, bufopts)
-        K('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-        K('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-        K('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-        K('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
-      end
-
-      local lsp_flags = {
-        debounce_text_changes = 150,
-      }
-
-      lspconfig.eslint.setup {
+      vim.lsp.config('*', {
         capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
+      })
+
+      vim.lsp.config('eslint', {
         settings = {
           codeActionOnSave = {
             mode = "all"
           },
-        }
-      }
-
-      lspconfig.html.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
-        filetypes = { "html", "templ", "htmldjango", "twig" }
-      }
-
-      lspconfig.dartls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags
+        },
       })
 
-      lspconfig.tailwindcss.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
+      vim.lsp.config('html', {
+        filetypes = { "html", "templ", "htmldjango", "twig" },
+      })
+
+      vim.lsp.config('tailwindcss', {
         settings = {
           tailwindCSS = {
             experimental = {
@@ -94,10 +73,7 @@ local M = {
         },
       })
 
-      lspconfig.lua_ls.setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
+      vim.lsp.config('lua_ls', {
         settings = {
           Lua = {
             runtime = {
@@ -114,7 +90,9 @@ local M = {
             },
           },
         },
-      }
+      })
+
+      vim.lsp.enable({ 'eslint', 'html', 'dartls', 'tailwindcss', 'lua_ls' })
 
       local builtin = require("telescope.builtin")
       vim.lsp.handlers["textDocument/references"] = builtin.lsp_references
