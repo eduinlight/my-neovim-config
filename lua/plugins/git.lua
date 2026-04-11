@@ -5,12 +5,7 @@ local M = {
       K("n", "<leader>u", vim.cmd.UndotreeShow)
     end
   },
-  {
-    "tpope/vim-fugitive",
-    config = function()
-      K("n", "<leader>gs", vim.cmd.Git)
-    end
-  },
+  { "tpope/vim-fugitive" },
   {
     'APZelos/blamer.nvim',
     config = function()

@@ -1,18 +1,10 @@
 local M = {
-  { "mason-org/mason.nvim",             opts = {} },
-  { 'williamboman/mason-lspconfig.nvim' },
-  { 'hrsh7th/nvim-cmp' },
-  { 'hrsh7th/cmp-buffer' },
-  { 'hrsh7th/cmp-path' },
-  { 'saadparwaiz1/cmp_luasnip' },
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'hrsh7th/cmp-nvim-lua' },
-  { 'mfussenegger/nvim-lint' },
+  { "mason-org/mason.nvim", opts = {} },
+  { 'neovim/nvim-lspconfig' },
   {
-    'L3MON4D3/LuaSnip',
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    'williamboman/mason-lspconfig.nvim',
+    dependencies = { 'mason-org/mason.nvim', 'neovim/nvim-lspconfig', 'hrsh7th/cmp-nvim-lsp' },
     config = function()
-      require('mason').setup({})
       require('mason-lspconfig').setup({
         ensure_installed = {
           'lua_ls',
@@ -41,6 +33,10 @@ local M = {
           K('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
           K('n', '<F2>', vim.lsp.buf.rename, bufopts)
           K('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+
+          local builtin = require("telescope.builtin")
+          K('n', 'gd', builtin.lsp_definitions, bufopts)
+          K('n', 'gr', builtin.lsp_references, bufopts)
         end,
       })
 
@@ -92,11 +88,7 @@ local M = {
         },
       })
 
-      vim.lsp.enable({ 'eslint', 'html', 'dartls', 'tailwindcss', 'lua_ls' })
-
-      local builtin = require("telescope.builtin")
-      vim.lsp.handlers["textDocument/references"] = builtin.lsp_references
-      vim.lsp.handlers["textDocument/definition"] = builtin.lsp_definitions
+      vim.lsp.enable({ 'eslint', 'html', 'tailwindcss', 'lua_ls' })
 
       K('n', '<A-f>', vim.cmd.EslintFixAll)
       K('n', '<leader>f', function()
@@ -112,7 +104,19 @@ local M = {
       K('n', '<leader>ds', ":split<CR><C-w>jgD", { silent = true })
       K('n', '<leader>js', ":ClangdSwitchSourceHeader<CR>", { silent = true })
       K('n', '<leader>ct', function() vim.diagnostic.open_float({ "line" }) end, { silent = true })
-
+    end,
+  },
+  { 'hrsh7th/nvim-cmp' },
+  { 'hrsh7th/cmp-buffer' },
+  { 'hrsh7th/cmp-path' },
+  { 'saadparwaiz1/cmp_luasnip' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { 'hrsh7th/cmp-nvim-lua' },
+  { 'mfussenegger/nvim-lint' },
+  {
+    'L3MON4D3/LuaSnip',
+    dependencies = { 'rafamadriz/friendly-snippets' },
+    config = function()
       local cmp = require('cmp')
       local luasnip = require('luasnip')
 
