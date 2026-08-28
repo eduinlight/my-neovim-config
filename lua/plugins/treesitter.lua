@@ -1,48 +1,38 @@
-return {
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = function()
-      require("nvim-treesitter.install").update({ with_sync = true })()
-    end,
-    config = function()
-      local configs = require("nvim-treesitter.configs")
-      
-      configs.setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "css", "typescript", "python", "rust", "go", "json", "yaml", "markdown", "bash", "dart", "tsx", "php", "norg" },
-        sync_install = false,
-        auto_install = true,
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
-        indent = {
-          enable = true,
-        },
-        playground = {
-          enable = true,
-          disable = {},
-          updatetime = 25,
-          persist_queries = false,
-          keybindings = {
-            toggle_query_editor = 'o',
-            toggle_hl_groups = 'i',
-            toggle_injected_languages = 't',
-            toggle_anonymous_nodes = 'a',
-            toggle_language_display = 'I',
-            focus_language = 'f',
-            unfocus_language = 'F',
-            update = 'R',
-            goto_node = '<cr>',
-            show_help = '?',
-          },
-        }
-      })
-      
-      K("n", "<leader>jc", function()
-        require("treesitter-context").go_to_context(vim.v.count1)
-      end, { silent = true })
-    end
-  },
-  { 'nvim-treesitter/playground' },
+local languages = {
+  "bash", "c", "css", "dart", "go", "html", "javascript", "json", "lua",
+  "markdown", "markdown_inline", "php", "php_only", "python", "query",
+  "rust", "toml", "tsx", "typescript", "vim", "vimdoc", "yaml",
 }
 
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
+    build = ":TSUpdate",
+    config = function()
+      local ts = require("nvim-treesitter")
+
+      ts.setup({})
+      ts.install(languages)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+          if not lang then
+            return
+          end
+          local ok, added = pcall(vim.treesitter.language.add, lang)
+          if not ok or not added then
+            return
+          end
+          vim.treesitter.start(args.buf, lang)
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+
+      K("n", "<leader>ti", ":InspectTree<CR>", { silent = true })
+      K("n", "<leader>th", ":Inspect<CR>", { silent = true })
+    end
+  },
+}

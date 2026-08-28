@@ -1,9 +1,17 @@
 return {
   {
-    "Imamiland/neovim-vivify-markdown.nvim",
-    version = "stable",
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+    init = function()
+      vim.g.mkdp_auto_close = 0
+      vim.g.mkdp_theme = "dark"
+    end,
     config = function()
-      require("neovim-vivify-markdown").setup({})
+      K("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", { silent = true })
     end
   },
 }
